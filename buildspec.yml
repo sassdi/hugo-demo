@@ -1,12 +1,7 @@
 version: 0.2
-environment_variables:
-    plaintext:
-        HUGO_VERSION: "0.126.1"
 
 phases:
     install:
-        runtime-versions:
-            docker: 18
         commands:
             - cd /tmp
             - wget https://github.com/gohugoio/hugo/releases/download/v0.126.1/hugo_extended_0.126.1_Linux-64bit.tar.gz
@@ -14,11 +9,11 @@ phases:
             - mv hugo /usr/bin/hugo
             - cd -
             - rm -rf /tmp/*
- build:
-    commands:
-        - rm -rf public
-        - hugo
-        - aws s3 sync public/ s3://test-coursera-hugo/ --region us-west-2 --delete
- post_build:
-    commands:
-        - echo Build completed on `date`
+    build:
+        commands:
+            - rm -rf public
+            - hugo deploy
+            - aws s3 sync public/ s3://test-coursera-hugo/ --region us-west-2 --delete
+    post_build:
+        commands:
+            - echo Build completed on `date`
