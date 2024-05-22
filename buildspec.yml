@@ -9,7 +9,7 @@ phases:
             docker: 18
         commands:
             - cd /tmp
-            - https://github.com/gohugoio/hugo/releases/download/v0.126.1/hugo_extended_0.126.1_Linux-64bit.tar.gz
+            - wget https://github.com/gohugoio/hugo/releases/download/v0.126.1/hugo_extended_0.126.1_Linux-64bit.tar.gz
             - tar -xzf hugo_extended_0.126.1_Linux-64bit.tar.gz
             - mv hugo /usr/bin/hugo
             - cd -
@@ -18,7 +18,7 @@ phases:
     commands:
         - rm -rf public
         - hugo
-        - aws s3 sync public/ s3://test-coursera-hugo --region us-west-2 --delete
+        - aws s3 sync public/ s3://test-coursera-hugo/ --region us-west-2 --delete
  post_build:
     commands:
         - echo Build completed on `date`
