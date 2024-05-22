@@ -1,0 +1,10 @@
+baseURL = 'http://test-coursera-hugo.s3-website-us-west-2.amazonaws.com'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'ananke'
+
+[deployment]
+
+[[deployment.targets]]
+    name="test"
+    URL = "s3://test-coursera-hugo/?region=us-west-2" 
