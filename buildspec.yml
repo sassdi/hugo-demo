@@ -12,6 +12,7 @@ phases:
     build:
         commands:
             - rm -rf public
+            - cd quickstart
             - hugo deploy
             - aws s3 sync public/ s3://test-coursera-hugo/ --region us-west-2 --delete
     post_build:
